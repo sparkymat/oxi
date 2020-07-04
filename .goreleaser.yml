@@ -1,0 +1,14 @@
+# goreleaser.yml
+builds:
+  - main: ./oxi.go
+    id: "oxi"
+    binary: oxi
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -extldflags "-static"
+    goos:
+      - linux
+      - darwin
+      - windows
+      - freebsd

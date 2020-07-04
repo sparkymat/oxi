@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	app = kingpin.New("oxi", "oxi is a commandline HTTP client")
+	app = kingpin.New("oxi", "oxi is a commandline HTTP client").Version("0.0.1")
 	url = app.Arg("url", "URL to fetch").String()
 )
 

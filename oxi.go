@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/alecthomas/kingpin"
+	"github.com/sparkymat/oxi/collection"
 )
 
 var (
@@ -20,6 +21,10 @@ func main() {
 	if url != nil && *url != "" {
 		fmt.Printf("GET %s", *url)
 	} else {
-		fmt.Println("Entering interactive mode")
+		interactiveMode()
 	}
+}
+
+func interactiveMode() {
+	collection.FindOrCreate()
 }

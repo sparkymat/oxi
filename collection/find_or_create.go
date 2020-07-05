@@ -1,7 +1,6 @@
 package collection
 
 import (
-	"errors"
 	"fmt"
 
 	"github.com/mgutz/ansi"
@@ -16,8 +15,10 @@ func FindOrCreate() (*Type, error) {
 
 	options = append(options, ui.StringOption(fmt.Sprintf("[ %s ]", greenBold("CREATE"))))
 
-	list := []Type{
-		{Name: "V1"},
+	var list []Type
+	var err error
+	if list, err = FindAll(); err != nil {
+		return nil, err
 	}
 
 	for index, item := range list {
@@ -28,7 +29,10 @@ func FindOrCreate() (*Type, error) {
 	}
 
 	chooser := ui.New()
-	chooser.GetUserChoice("Select collection", options)
+	choice := chooser.GetUserChoice("Select collection", options)
+	if choice == 0 {
+		return &Type{Name: "foo"}, nil
+	}
 
-	return nil, errors.New("x")
+	return &list[choice-1], nil
 }
